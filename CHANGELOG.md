@@ -1,3 +1,7 @@
+## 1.1.0
+
+* Fix alert dialog skip condition
+
 ## 1.0.5
 
 * Add alert dialog option
