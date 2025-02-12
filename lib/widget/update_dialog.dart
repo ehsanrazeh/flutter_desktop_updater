@@ -50,7 +50,7 @@ class _UpdateDialogListenerState extends State<UpdateDialogListener> {
           WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
             showDialog(
               context: context,
-              // barrierDismissible: controller.isMandatory == false,
+              barrierDismissible: widget.controller.isMandatory == false,
               builder: (context) {
                 return UpdateDialogWidget(
                   controller: widget.controller,
