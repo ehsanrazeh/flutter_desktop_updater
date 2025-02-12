@@ -1,3 +1,7 @@
+## 1.1.1
+
+* Fix download and skip this version localization and add colors
+
 ## 1.1.0
 
 * Fix alert dialog skip condition
