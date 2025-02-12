@@ -10,12 +10,30 @@ class UpdateDialogListener extends StatefulWidget {
     this.backgroundColor,
     this.iconColor,
     this.shadowColor,
+    this.textColor,
+    this.buttonTextColor,
+    this.buttonIconColor,
   });
 
   final DesktopUpdaterController controller;
+
+  /// The background color of the dialog. if null, it will use Theme.of(context).colorScheme.surfaceContainerHigh,
   final Color? backgroundColor;
+
+  /// The color of the icon. if null, it will use Theme.of(context).colorScheme.primary,
   final Color? iconColor;
+
+  /// The color of the shadow. if null, it will use Theme.of(context).shadowColor,
   final Color? shadowColor;
+
+  /// The color of the text. if null, it will use Theme.of(context).colorScheme.onSurface,
+  final Color? textColor;
+
+  /// The color of the button text. if null, it will use Theme.of(context).colorScheme.primary,
+  final Color? buttonTextColor;
+
+  /// The color of the button icon. if null, it will use Theme.of(context).colorScheme.primary,
+  final Color? buttonIconColor;
 
   @override
   State<UpdateDialogListener> createState() => _UpdateDialogListenerState();
@@ -32,6 +50,9 @@ class UpdateDialogListener extends StatefulWidget {
     properties.add(ColorProperty("backgroundColor", backgroundColor));
     properties.add(ColorProperty("iconColor", iconColor));
     properties.add(ColorProperty("shadowColor", shadowColor));
+    properties.add(ColorProperty("buttonTextColor", buttonTextColor));
+    properties.add(ColorProperty("buttonIconColor", buttonIconColor));
+    properties.add(ColorProperty("textColor", textColor));
   }
 }
 
@@ -57,6 +78,9 @@ class _UpdateDialogListenerState extends State<UpdateDialogListener> {
                   backgroundColor: widget.backgroundColor,
                   iconColor: widget.iconColor,
                   shadowColor: widget.shadowColor,
+                  textColor: widget.textColor,
+                  buttonTextColor: widget.buttonTextColor,
+                  buttonIconColor: widget.buttonIconColor,
                 );
               },
             );
@@ -113,6 +137,9 @@ class UpdateDialogWidget extends StatelessWidget {
     this.backgroundColor,
     this.iconColor,
     this.shadowColor,
+    this.textColor,
+    this.buttonTextColor,
+    this.buttonIconColor,
   }) : notifier = controller;
 
   /// The controller for the update dialog.
@@ -126,6 +153,15 @@ class UpdateDialogWidget extends StatelessWidget {
 
   /// The color of the shadow. if null, it will use Theme.of(context).shadowColor,
   final Color? shadowColor;
+
+  /// The color of the text. if null, it will use Theme.of(context).colorScheme.onSurface,
+  final Color? textColor;
+
+  /// The color of the button text. if null, it will use Theme.of(context).colorScheme.primary,
+  final Color? buttonTextColor;
+
+  /// The color of the button icon. if null, it will use Theme.of(context).colorScheme.primary,
+  final Color? buttonIconColor;
 
   @override
   Widget build(BuildContext context) {
@@ -141,6 +177,9 @@ class UpdateDialogWidget extends StatelessWidget {
               title: Text(
                 notifier.getLocalization?.updateAvailableText ??
                     "Update Available",
+                style: TextStyle(
+                  color: textColor,
+                ),
               ),
               content: Text(
                 "${getLocalizedString(
@@ -168,6 +207,9 @@ class UpdateDialogWidget extends StatelessWidget {
                             .toStringAsFixed(2),
                       ],
                     )) ?? ""}",
+                style: TextStyle(
+                  color: buttonTextColor,
+                ),
               ),
               actions: [
                 if ((notifier.isDownloading) && !(notifier.isDownloaded))
@@ -251,8 +293,17 @@ class UpdateDialogWidget extends StatelessWidget {
                     children: [
                       if ((notifier.isMandatory) == false)
                         TextButton.icon(
-                          icon: const Icon(Icons.close),
-                          label: const Text("Skip this version"),
+                          icon: Icon(
+                            Icons.close,
+                            color: buttonIconColor,
+                          ),
+                          label: Text(
+                            notifier.getLocalization?.skipThisVersionText ??
+                                "Skip this version",
+                            style: TextStyle(
+                              color: buttonTextColor,
+                            ),
+                          ),
                           onPressed: notifier.makeSkipUpdate,
                         ),
                       if ((notifier.isMandatory) == false)
@@ -260,8 +311,16 @@ class UpdateDialogWidget extends StatelessWidget {
                           width: 8,
                         ),
                       TextButton.icon(
-                        icon: const Icon(Icons.download),
-                        label: const Text("Download"),
+                        icon: Icon(
+                          Icons.download,
+                          color: buttonIconColor,
+                        ),
+                        label: Text(
+                          notifier.getLocalization?.downloadText ?? "Download",
+                          style: TextStyle(
+                            color: buttonTextColor,
+                          ),
+                        ),
                         onPressed: notifier.downloadUpdate,
                       ),
                     ],
@@ -283,6 +342,9 @@ class UpdateDialogWidget extends StatelessWidget {
       )
       ..add(ColorProperty("backgroundColor", backgroundColor))
       ..add(ColorProperty("iconColor", iconColor))
-      ..add(ColorProperty("shadowColor", shadowColor));
+      ..add(ColorProperty("shadowColor", shadowColor))
+      ..add(ColorProperty("buttonTextColor", buttonTextColor))
+      ..add(ColorProperty("buttonIconColor", buttonIconColor))
+      ..add(ColorProperty("textColor", textColor));
   }
 }

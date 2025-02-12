@@ -266,7 +266,10 @@ class _UpdateCardState extends State<UpdateCard> {
                                 children: [
                                   FilledButton.icon(
                                     icon: const Icon(Icons.download),
-                                    label: const Text("Download"),
+                                    label: Text(
+                                      notifier?.getLocalization?.downloadText ??
+                                          "Download",
+                                    ),
                                     onPressed: notifier?.downloadUpdate,
                                   ),
                                   const SizedBox(
@@ -275,7 +278,11 @@ class _UpdateCardState extends State<UpdateCard> {
                                   if ((notifier?.isMandatory ?? false) == false)
                                     OutlinedButton.icon(
                                       icon: const Icon(Icons.close),
-                                      label: const Text("Skip this version"),
+                                      label: Text(
+                                        notifier?.getLocalization
+                                                ?.skipThisVersionText ??
+                                            "Skip this version",
+                                      ),
                                       onPressed: () {
                                         notifier?.makeSkipUpdate();
                                       },
