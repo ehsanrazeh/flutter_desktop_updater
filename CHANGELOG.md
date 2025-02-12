@@ -1,3 +1,7 @@
+## 1.0.5
+
+* Add alert dialog option
+
 ## 1.0.4
 
 * Add custom direct widget for theme colors
