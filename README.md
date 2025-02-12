@@ -141,6 +141,24 @@ Widget build(BuildContext context) {
 }
 ```
 
+You can use as alert dialog a with `UpdateDialogListener`:
+```dart
+@override
+Widget build(BuildContext context) {
+    return Scaffold(
+    appBar: AppBar(
+        title: const Text("Plugin example app"),
+    ),
+    body: Column(
+        children: [
+            /// This widget not rendering
+            UpdateDialogListener(
+                controller: _desktopUpdaterController,
+            ),
+        ],
+    )
+```
+
 # Creating app-archive.json
 ```
 {
