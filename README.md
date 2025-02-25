@@ -163,7 +163,7 @@ Widget build(BuildContext context) {
 ```
 {
     "appName": "Desktop Updater",
-    "descriptipn": "This is my app descriptipn",
+    "description": "This is my app description",
     "items": [
         {
             "version": "0.1.8",
