@@ -9,9 +9,10 @@ class AppArchiveModel {
   factory AppArchiveModel.fromJson(Map<String, dynamic> json) {
     return AppArchiveModel(
       appName: json["appName"],
-      description: json["descriptipn"],
-      items:
-          List<ItemModel>.from(json["items"].map((x) => ItemModel.fromJson(x))),
+      description: json["description"],
+      items: List<ItemModel>.from(
+        json["items"].map((x) => ItemModel.fromJson(x)),
+      ),
     );
   }
   final String appName;
@@ -21,7 +22,7 @@ class AppArchiveModel {
   Map<String, dynamic> toJson() {
     return {
       "appName": appName,
-      "descriptipn": description,
+      "description": description,
       "items": List<dynamic>.from(items.map((x) => x.toJson())),
     };
   }
@@ -101,25 +102,16 @@ class ItemModel {
 }
 
 class ChangeModel {
-  ChangeModel({
-    this.type,
-    required this.message,
-  });
+  ChangeModel({this.type, required this.message});
 
   factory ChangeModel.fromJson(Map<String, dynamic> json) {
-    return ChangeModel(
-      type: json["type"],
-      message: json["message"],
-    );
+    return ChangeModel(type: json["type"], message: json["message"]);
   }
   final String? type;
   final String message;
 
   Map<String, dynamic> toJson() {
-    return {
-      "type": type,
-      "message": message,
-    };
+    return {"type": type, "message": message};
   }
 }
 
