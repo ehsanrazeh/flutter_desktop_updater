@@ -164,8 +164,8 @@ class _UpdateCardState extends State<UpdateCard> {
                           getLocalizedString(
                                 notifier?.getLocalization?.newVersionLongText,
                                 [
-                                  notifier?.appName,
-                                  notifier?.appVersion,
+                                  ((notifier?.downloadSize ?? 0) / 1024)
+                                      .toStringAsFixed(2),
                                 ],
                               ) ??
                               (getLocalizedString(

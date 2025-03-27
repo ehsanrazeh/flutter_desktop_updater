@@ -197,8 +197,8 @@ class UpdateDialogWidget extends StatelessWidget {
                     )) ?? ""}, ${getLocalizedString(
                       notifier.getLocalization?.newVersionLongText,
                       [
-                        notifier.appName,
-                        notifier.appVersion,
+                        ((notifier.downloadSize ?? 0) / 1024)
+                                      .toStringAsFixed(2),
                       ],
                     ) ?? (getLocalizedString(
                       "New version is ready to download, click the button below to start downloading. This will download {} MB of data.",
