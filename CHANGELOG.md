@@ -1,3 +1,6 @@
+## 1.2.0
+* Fix macOS issues (thanks to @TheFilyng)
+
 ## 1.1.1
 
 * Fix download and skip this version localization and add colors
