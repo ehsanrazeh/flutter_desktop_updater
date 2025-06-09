@@ -68,6 +68,7 @@ namespace desktop_updater
 
     const std::string batScript =
         "@echo off\n"
+        "chcp 65001 > NUL\n"
         // "echo Updating the application...\n"
         "timeout /t 2 /nobreak > NUL\n"
         // "echo Copying files...\n"
