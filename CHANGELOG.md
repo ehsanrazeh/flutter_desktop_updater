@@ -1,3 +1,6 @@
+## 1.3.0
+* Revert fix macOS issues, sorry for the inconvenience, do not use 1.2.0 for macOS
+
 ## 1.2.0
 * Fix macOS issues (thanks to @TheFilyng)
 
