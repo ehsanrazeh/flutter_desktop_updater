@@ -21,7 +21,8 @@ Future<void> main(List<String> args) async {
   final parsed = Pubspec.parse(pubspec);
 
   /// Only base version 1.0.0
-  final buildName = "${parsed.version?.major}.${parsed.version?.minor}.${parsed.version?.patch}";
+  final buildName =
+      "${parsed.version?.major}.${parsed.version?.minor}.${parsed.version?.patch}";
   final buildNumber = parsed.version?.build.firstOrNull.toString();
 
   print(
@@ -67,7 +68,8 @@ Future<void> main(List<String> args) async {
   print("Executing build command: ${buildCommand.join(' ')}");
 
   // Replace Process.run with Process.start to handle real-time output
-  final process = await Process.start(buildCommand.first, buildCommand.sublist(1));
+  final process =
+      await Process.start(buildCommand.first, buildCommand.sublist(1));
 
   process.stdout.transform(utf8.decoder).listen(print);
   process.stderr.transform(utf8.decoder).listen((data) {
@@ -147,16 +149,12 @@ Future<void> copyDirectory(Directory source, Directory destination) async {
     destination.createSync(recursive: true);
   }
 
-  await for (final entity in source.list(recursive: false, followLinks: false)) {
-    final newPath = path.join(destination.path, path.basename(entity.path));
-
-    if (entity is Link) {
-      final target = await entity.target();
-      await Link(newPath).create(target, recursive: true);
-    } else if (entity is File) {
-      await File(entity.path).copy(newPath);
-    } else if (entity is Directory) {
-      await copyDirectory(entity, Directory(newPath));
+  await for (final entity in source.list(recursive: true)) {
+    if (entity is File) {
+      final relativePath = path.relative(entity.path, from: source.path);
+      final newPath = path.join(destination.path, relativePath);
+      await Directory(path.dirname(newPath)).create(recursive: true);
+      await entity.copy(newPath);
     }
   }
 }
