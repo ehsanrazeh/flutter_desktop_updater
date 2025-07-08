@@ -1,6 +1,6 @@
 import "package:desktop_updater/desktop_updater.dart";
 import "package:flutter/material.dart";
-
+export 'updater_controller.dart';
 class DesktopUpdaterController extends ChangeNotifier {
   DesktopUpdaterController({
     required Uri? appArchiveUrl,
