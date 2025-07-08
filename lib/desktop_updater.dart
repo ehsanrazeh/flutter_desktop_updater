@@ -14,7 +14,8 @@ export "package:desktop_updater/widget/update_direct_card.dart";
 export "package:desktop_updater/widget/update_sliver.dart";
 
 export "desktop_updater_inherited_widget.dart";
-
+export 'updater_controller.dart';
+export 'widget/update_widget.dart';
 class DesktopUpdater {
   DesktopUpdater();
   Future<String?> getPlatformVersion() {
